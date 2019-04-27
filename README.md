@@ -24,7 +24,9 @@ have on my development machines on a daily basis.
 * Node.js
 
 If this is the first time you have run this tool, please do read the source
-to validate that it's not going to wipe something important!
+to validate that it's not going to wipe something important. It should be
+fairly safe given that it only looks at build files etc, but know that you
+are running it at your own risk!
 
 ## Installation
 
