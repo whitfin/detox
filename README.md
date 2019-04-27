@@ -1,8 +1,8 @@
-# Cleanse
-[![Crates.io](https://img.shields.io/crates/v/cleanse.svg)](https://crates.io/crates/cleanse)
-[![Build Status](https://img.shields.io/travis/whitfin/cleanse.svg)](https://travis-ci.org/whitfin/cleanse)
+# Detox
+[![Crates.io](https://img.shields.io/crates/v/detox.svg)](https://crates.io/crates/detox)
+[![Build Status](https://img.shields.io/travis/whitfin/detox.svg)](https://travis-ci.org/whitfin/detox)
 
-Cleanse is a very small CLI tool used to clean up development directories to
+Detox is a very small CLI tool used to clean up development directories to
 save disk space. This is particularly handy to use prior to backing up your
 development machine. It was written as a personal tool, but figured it might
 be useful to others.
@@ -28,12 +28,12 @@ to validate that it's not going to wipe something important!
 
 ## Installation
 
-Cleanse is written in Rust, and is available for download via the repository
-on [crates.io](https://crates.io/crates/cleanse). The easiest way to get this
+Detox is written in Rust, and is available for download via the repository
+on [crates.io](https://crates.io/crates/detox). The easiest way to get this
 at this point is to install it via Cargo:
 
 ```shell
-$ cargo install cleanse
+$ cargo install detox
 ```
 
 ## Usage
@@ -41,8 +41,8 @@ $ cargo install cleanse
 The CLI is tiny and instructions are provided via the documentation:
 
 ```shell
-$ cleanse -h
-$ cleanse <location>
+$ detox -h
+$ detox <location>
 ```
 
 Locations are checked recursively for files which might signal a development

@@ -2,11 +2,11 @@
 use clap::{App, AppSettings, Arg};
 use std::ffi::OsString;
 
-use crate::cleanse::*;
+use crate::cleaner::*;
 
 /// Options struct to store configuration state.
 pub struct Options {
-    pub(crate) cleansers: Vec<Box<Cleanser>>,
+    pub(crate) cleaners: Vec<Box<Cleaner>>,
     pub(crate) locations: Vec<String>,
 }
 
@@ -25,13 +25,13 @@ impl Options {
 
         // create opts
         Options {
-            cleansers: vec![
-                Box::new(GitCleanser),
-                Box::new(GradleCleanser),
-                Box::new(MixCleanser),
-                Box::new(NodeCleanser),
-                Box::new(MavenCleanser),
-                Box::new(CargoCleanser),
+            cleaners: vec![
+                Box::new(GitCleaner),
+                Box::new(GradleCleaner),
+                Box::new(MixCleaner),
+                Box::new(NodeCleaner),
+                Box::new(MavenCleaner),
+                Box::new(CargoCleaner),
             ],
             locations: options
                 .values_of("locations")

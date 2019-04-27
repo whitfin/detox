@@ -1,23 +1,23 @@
-//! Basic cleansing module for Git projects.
-use super::Cleanser;
+//! Basic cleaner module for Git projects.
+use super::Cleaner;
 use std::io;
 use std::process::{Command, Stdio};
 
-/// Cleanser implementation for Git projects.
-pub struct GitCleanser;
-impl Cleanser for GitCleanser {
-    /// Returns the name of this cleanser.
+/// Cleaner implementation for Git projects.
+pub struct GitCleaner;
+impl Cleaner for GitCleaner {
+    /// Returns the name of this cleaner.
     fn name(&self) -> &str {
         "Git"
     }
 
-    /// Returns the triggers associated with this cleanser.
+    /// Returns the triggers associated with this cleaner.
     fn triggers(&self) -> &[&str] {
         &[".git"]
     }
 
-    /// Cleanses the provided directory based on a Git structure.
-    fn cleanse(&self, dir: &str) -> io::Result<()> {
+    /// Cleans the provided directory based on a Git structure.
+    fn clean(&self, dir: &str) -> io::Result<()> {
         Command::new("git")
             .arg("reflog")
             .arg("expire")

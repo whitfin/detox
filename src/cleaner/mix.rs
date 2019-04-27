@@ -1,23 +1,23 @@
-//! Basic cleansing module for Mix projects.
-use super::Cleanser;
+//! Basic cleaner module for Mix projects.
+use super::Cleaner;
 use std::io;
 use std::process::{Command, Stdio};
 
-/// Cleanser implementation for Mix projects.
-pub struct MixCleanser;
-impl Cleanser for MixCleanser {
-    /// Returns the name of this cleanser.
+/// Cleaner implementation for Mix projects.
+pub struct MixCleaner;
+impl Cleaner for MixCleaner {
+    /// Returns the name of this cleaner.
     fn name(&self) -> &str {
         "Mix"
     }
 
-    /// Returns the triggers associated with this cleanser.
+    /// Returns the triggers associated with this cleaner.
     fn triggers(&self) -> &[&str] {
         &["mix.exs"]
     }
 
-    /// Cleanses the provided directory based on a Git structure.
-    fn cleanse(&self, dir: &str) -> io::Result<()> {
+    /// Cleans the provided directory based on a Git structure.
+    fn clean(&self, dir: &str) -> io::Result<()> {
         Command::new("mix")
             .arg("clean")
             .current_dir(dir)

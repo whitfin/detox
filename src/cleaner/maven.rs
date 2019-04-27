@@ -1,23 +1,23 @@
-//! Basic cleansing module for Maven projects.
-use super::Cleanser;
+//! Basic cleaner module for Maven projects.
+use super::Cleaner;
 use std::io;
 use std::process::{Command, Stdio};
 
-/// Cleanser implementation for Maven projects.
-pub struct MavenCleanser;
-impl Cleanser for MavenCleanser {
-    /// Returns the name of this cleanser.
+/// Cleaner implementation for Maven projects.
+pub struct MavenCleaner;
+impl Cleaner for MavenCleaner {
+    /// Returns the name of this cleaner.
     fn name(&self) -> &str {
         "Maven"
     }
 
-    /// Returns the triggers associated with this cleanser.
+    /// Returns the triggers associated with this cleaner.
     fn triggers(&self) -> &[&str] {
         &["pom.xml"]
     }
 
-    /// Cleanses the provided directory based on a Git structure.
-    fn cleanse(&self, dir: &str) -> io::Result<()> {
+    /// Cleans the provided directory based on a Git structure.
+    fn clean(&self, dir: &str) -> io::Result<()> {
         Command::new("mvn")
             .arg("clean")
             .current_dir(dir)

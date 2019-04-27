@@ -1,4 +1,4 @@
-//! Cleansing traits and implementations.
+//! Cleaning traits and implementations.
 mod cargo;
 mod git;
 mod gradle;
@@ -6,23 +6,23 @@ mod maven;
 mod mix;
 mod node;
 
-pub use cargo::CargoCleanser;
-pub use git::GitCleanser;
-pub use gradle::GradleCleanser;
-pub use maven::MavenCleanser;
-pub use mix::MixCleanser;
-pub use node::NodeCleanser;
+pub use cargo::CargoCleaner;
+pub use git::GitCleaner;
+pub use gradle::GradleCleaner;
+pub use maven::MavenCleaner;
+pub use mix::MixCleaner;
+pub use node::NodeCleaner;
 
 use std::fs;
 use std::io::{self, ErrorKind};
 
-/// Trait to represent a cleansing structure.
-pub trait Cleanser {
-    /// Returns the name of the current cleanser.
+/// Trait to represent a cleaning structure.
+pub trait Cleaner {
+    /// Returns the name of the current cleaner.
     fn name(&self) -> &str;
 
-    /// Cleanses a directory assumed to be a relevant directory.
-    fn cleanse(&self, dir: &str) -> io::Result<()>;
+    /// Cleans a directory assumed to be a relevant directory.
+    fn clean(&self, dir: &str) -> io::Result<()>;
 
     /// Returns a set of file names which identify a relevant directory.
     fn triggers(&self) -> &[&str];

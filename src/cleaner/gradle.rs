@@ -1,23 +1,23 @@
-//! Basic cleansing module for Gradle projects.
-use super::Cleanser;
+//! Basic cleaner module for Gradle projects.
+use super::Cleaner;
 use std::io;
 use std::process::{Command, Stdio};
 
-/// Cleanser implementation for Gradle projects.
-pub struct GradleCleanser;
-impl Cleanser for GradleCleanser {
-    /// Returns the name of this cleanser.
+/// Cleaner implementation for Gradle projects.
+pub struct GradleCleaner;
+impl Cleaner for GradleCleaner {
+    /// Returns the name of this cleaner.
     fn name(&self) -> &str {
         "Gradle"
     }
 
-    /// Returns the triggers associated with this cleanser.
+    /// Returns the triggers associated with this cleaner.
     fn triggers(&self) -> &[&str] {
         &["build.gradle"]
     }
 
-    /// Cleanses the provided directory based on a Git structure.
-    fn cleanse(&self, dir: &str) -> io::Result<()> {
+    /// Cleans the provided directory based on a Git structure.
+    fn clean(&self, dir: &str) -> io::Result<()> {
         Command::new("gradle")
             .arg("clean")
             .current_dir(dir)

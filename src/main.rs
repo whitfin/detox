@@ -1,6 +1,6 @@
-//! Cleansing of unnecessary files in development directories.
-#![doc(html_root_url = "https://docs.rs/cleanse/1.0.0")]
-mod cleanse;
+//! Cleaning of unnecessary files in development directories.
+#![doc(html_root_url = "https://docs.rs/detox/1.0.0")]
+mod cleaner;
 mod options;
 
 use fs_extra::dir;
@@ -32,10 +32,10 @@ fn main() -> Result<(), Box<Error>> {
                 .to_str()
                 .expect("a segment should exist");
 
-            // walk through all cleansers
-            for cleanser in &options.cleansers {
-                // skip if the cleanser doesn't care
-                if !cleanser.triggers().contains(&segment) {
+            // walk through all cleaners
+            for cleaner in &options.cleaners {
+                // skip if the cleaner doesn't care
+                if !cleaner.triggers().contains(&segment) {
                     continue;
                 }
 
@@ -46,8 +46,8 @@ fn main() -> Result<(), Box<Error>> {
                     .to_str()
                     .expect("dir should be a str");
 
-                // cleanse the directory
-                cleanser.cleanse(&dir)?;
+                // clean the directory
+                cleaner.clean(&dir)?;
             }
         }
 
