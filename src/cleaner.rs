@@ -15,6 +15,7 @@ pub use node::NodeCleaner;
 
 use std::fs;
 use std::io::{self, ErrorKind};
+use std::process::{Command, Stdio};
 
 /// Trait to represent a cleaning structure.
 pub trait Cleaner {
@@ -28,8 +29,20 @@ pub trait Cleaner {
     fn triggers(&self) -> &[&str];
 }
 
+/// Executes a command in a directory using provided arguments.
+pub fn cmd(dir: &str, cmd: &str, args: &[&str]) -> io::Result<()> {
+    Command::new(cmd)
+        .args(args)
+        .current_dir(dir)
+        .stdout(Stdio::null())
+        .stderr(Stdio::null())
+        .spawn()?
+        .wait()?;
+    Ok(())
+}
+
 /// Purges a location on disk, similar to `rm -rf`.
-pub fn purge(parent: &str, child: &str) -> io::Result<()> {
+pub fn del(parent: &str, child: &str) -> io::Result<()> {
     let path = format!("{}/{}", parent, child);
 
     // check for errors that we're ok with

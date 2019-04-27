@@ -1,7 +1,6 @@
 //! Basic cleaner module for Cargo projects.
 use super::Cleaner;
 use std::io;
-use std::process::{Command, Stdio};
 
 /// Cleaner implementation for Cargo projects.
 pub struct CargoCleaner;
@@ -18,14 +17,7 @@ impl Cleaner for CargoCleaner {
 
     /// cleaner the provided directory based on a Cargo structure.
     fn clean(&self, dir: &str) -> io::Result<()> {
-        Command::new("cargo")
-            .arg("clean")
-            .current_dir(dir)
-            .stdout(Stdio::null())
-            .stderr(Stdio::null())
-            .spawn()?
-            .wait()?;
-
-        super::purge(dir, "target")
+        super::cmd(dir, "cargo", &["clean"])?;
+        super::del(dir, "target")
     }
 }

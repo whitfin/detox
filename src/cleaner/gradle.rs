@@ -1,7 +1,6 @@
 //! Basic cleaner module for Gradle projects.
 use super::Cleaner;
 use std::io;
-use std::process::{Command, Stdio};
 
 /// Cleaner implementation for Gradle projects.
 pub struct GradleCleaner;
@@ -18,15 +17,8 @@ impl Cleaner for GradleCleaner {
 
     /// Cleans the provided directory based on a Git structure.
     fn clean(&self, dir: &str) -> io::Result<()> {
-        Command::new("gradle")
-            .arg("clean")
-            .current_dir(dir)
-            .stdout(Stdio::null())
-            .stderr(Stdio::null())
-            .spawn()?
-            .wait()?;
-
-        super::purge(dir, "build")?;
-        super::purge(dir, "out")
+        super::cmd(dir, "gradle", &["clean"])?;
+        super::del(dir, "build")?;
+        super::del(dir, "out")
     }
 }

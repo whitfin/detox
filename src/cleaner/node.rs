@@ -17,6 +17,6 @@ impl Cleaner for NodeCleaner {
 
     /// Cleans the provided directory based on a Git structure.
     fn clean(&self, dir: &str) -> io::Result<()> {
-        super::purge(dir, "node_modules")
+        super::del(dir, "node_modules")
     }
 }

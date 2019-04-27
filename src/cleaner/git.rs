@@ -1,7 +1,6 @@
 //! Basic cleaner module for Git projects.
 use super::Cleaner;
 use std::io;
-use std::process::{Command, Stdio};
 
 /// Cleaner implementation for Git projects.
 pub struct GitCleaner;
@@ -18,28 +17,7 @@ impl Cleaner for GitCleaner {
 
     /// Cleans the provided directory based on a Git structure.
     fn clean(&self, dir: &str) -> io::Result<()> {
-        Command::new("git")
-            .arg("reflog")
-            .arg("expire")
-            .arg("--all")
-            .arg("--expire=now")
-            .current_dir(dir)
-            .stdout(Stdio::null())
-            .stderr(Stdio::null())
-            .spawn()?
-            .wait()?;
-
-        Command::new("git")
-            .arg("gc")
-            .arg("-q")
-            .arg("--prune=now")
-            .arg("--aggressive")
-            .current_dir(dir)
-            .stdout(Stdio::null())
-            .stderr(Stdio::null())
-            .spawn()?
-            .wait()?;
-
-        Ok(())
+        super::cmd(dir, "git", &["reflog", "expire", "--all", "--expire=now"])?;
+        super::cmd(dir, "git", &["gc", "-q", "--prune=now", "--aggressive"])
     }
 }
