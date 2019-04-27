@@ -2,7 +2,7 @@
 name = "detox"
 version = "0.1.0" # remember to update html_root_url
 authors = ["Isaac Whitfield <iw@whitfin.io>"]
-description = "Quickly clean up your development directories before backups ."
+description = "Quickly clean up your development directories on disk"
 repository = "https://github.com/whitfin/detox"
 keywords = ["backup", "compression", "clean"]
 categories = ["algorithms", "command-line-utilities", "filesystem"]
