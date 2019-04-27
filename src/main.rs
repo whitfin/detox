@@ -3,7 +3,6 @@
 mod cleaner;
 mod options;
 
-use fs_extra::dir;
 use walkdir::WalkDir;
 
 use crate::options::Options;
@@ -18,7 +17,7 @@ fn main() -> Result<(), Box<Error>> {
     // iterate each provided location
     for location in &options.locations {
         // grab the size of the location before we start
-        let start = dir::get_size(location)?;
+        let start = get_size(location);
 
         // iterate all file entries that we come across in the recursive walk
         for entry in WalkDir::new(location).into_iter().filter_map(Result::ok) {
@@ -52,7 +51,7 @@ fn main() -> Result<(), Box<Error>> {
         }
 
         // fetch the size of the location when done
-        let end = dir::get_size(location)?;
+        let end = get_size(location);
 
         // output the stats
         println!(
@@ -66,4 +65,15 @@ fn main() -> Result<(), Box<Error>> {
 
     // done!
     Ok(())
+}
+
+/// Determines the size of a directory on the filesystem.
+fn get_size(path: &str) -> u64 {
+    WalkDir::new(path)
+        .into_iter()
+        .filter_map(Result::ok)
+        .filter(|node| node.file_type().is_file())
+        .filter_map(|file| file.metadata().ok())
+        .map(|meta| meta.len())
+        .sum()
 }
