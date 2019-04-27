@@ -1,5 +1,5 @@
 //! Cleaning of unnecessary files in development directories.
-#![doc(html_root_url = "https://docs.rs/detox/1.0.0")]
+#![doc(html_root_url = "https://docs.rs/detox/0.1.0")]
 mod cleaner;
 mod options;
 
