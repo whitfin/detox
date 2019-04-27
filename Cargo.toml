@@ -1,6 +1,6 @@
 [package]
 name = "detox"
-version = "0.1.0" # remember to update html_root_url
+version = "0.1.1" # remember to update html_root_url
 authors = ["Isaac Whitfield <iw@whitfin.io>"]
 description = "Quickly clean up your development directories on disk"
 repository = "https://github.com/whitfin/detox"
