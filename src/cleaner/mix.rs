@@ -1,6 +1,7 @@
 //! Basic cleaner module for Mix projects.
 use super::Cleaner;
 use std::io;
+
 /// Cleaner implementation for Mix projects.
 pub struct MixCleaner;
 impl Cleaner for MixCleaner {
