@@ -1,13 +1,14 @@
 //! Options parsing and configuration for command line interfaces.
 use clap::{App, AppSettings, Arg};
 use std::ffi::OsString;
+use std::path::PathBuf;
 
 use crate::cleaner::*;
 
 /// Options struct to store configuration state.
 pub struct Options {
     pub(crate) cleaners: Vec<Box<Cleaner>>,
-    pub(crate) locations: Vec<String>,
+    pub(crate) locations: Vec<PathBuf>,
 }
 
 impl Options {
@@ -36,7 +37,7 @@ impl Options {
             locations: options
                 .values_of("locations")
                 .unwrap()
-                .map(ToOwned::to_owned)
+                .filter_map(|location| PathBuf::from(location).canonicalize().ok())
                 .collect(),
         }
     }

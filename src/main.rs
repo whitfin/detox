@@ -9,6 +9,7 @@ use crate::options::Options;
 
 use std::env;
 use std::error::Error;
+use std::path::PathBuf;
 
 fn main() -> Result<(), Box<Error>> {
     // parse in our options from the command line args
@@ -56,7 +57,7 @@ fn main() -> Result<(), Box<Error>> {
         // output the stats
         println!(
             "Reduced {} from {} to {} ({:.2}%)",
-            location,
+            location.display(),
             start,
             end,
             ((start - end) as f64 / start as f64) * 100.0
@@ -68,7 +69,7 @@ fn main() -> Result<(), Box<Error>> {
 }
 
 /// Determines the size of a directory on the filesystem.
-fn get_size(path: &str) -> u64 {
+fn get_size(path: &PathBuf) -> u64 {
     WalkDir::new(path)
         .into_iter()
         .filter_map(Result::ok)
