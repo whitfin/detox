@@ -1,6 +1,6 @@
 # Detox
 [![Crates.io](https://img.shields.io/crates/v/detox.svg)](https://crates.io/crates/detox)
-[![Build Status](https://img.shields.io/travis/whitfin/detox.svg)](https://travis-ci.org/whitfin/detox)
+[![Build Status](https://img.shields.io/github/workflow/status/whitfin/detox/CI)](https://github.com/whitfin/detox/actions)
 
 Detox is a very small CLI tool used to clean up development directories to
 save disk space. This is particularly handy to use prior to backing up your
