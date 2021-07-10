@@ -7,7 +7,7 @@ use crate::cleaner::*;
 
 /// Options struct to store configuration state.
 pub struct Options {
-    pub(crate) cleaners: Vec<Box<Cleaner>>,
+    pub(crate) cleaners: Vec<Box<dyn Cleaner>>,
     pub(crate) locations: Vec<PathBuf>,
 }
 
