@@ -11,7 +11,7 @@ use std::env;
 use std::error::Error;
 use std::path::PathBuf;
 
-fn main() -> Result<(), Box<Error>> {
+fn main() -> Result<(), Box<dyn Error>> {
     // parse in our options from the command line args
     let options = Options::from(&mut env::args_os());
 
