@@ -9,7 +9,7 @@ use crate::options::Options;
 
 use std::env;
 use std::error::Error;
-use std::path::PathBuf;
+use std::path::Path;
 
 fn main() -> Result<(), Box<dyn Error>> {
     // parse in our options from the command line args
@@ -47,7 +47,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                     .expect("dir should be a str");
 
                 // clean the directory
-                cleaner.clean(&dir)?;
+                cleaner.clean(dir)?;
             }
         }
 
@@ -69,7 +69,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 }
 
 /// Determines the size of a directory on the filesystem.
-fn get_size(path: &PathBuf) -> u64 {
+fn get_size(path: &Path) -> u64 {
     WalkDir::new(path)
         .into_iter()
         .filter_map(Result::ok)
